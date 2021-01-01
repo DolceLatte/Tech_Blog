@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/DolceLatte/Tech_Blog/issues"
   },
-  "homepage": "https://github.com/DolceLatte/Tech_Blog#readme"
+  "homepage": "https://github.com/DolceLatte/Tech_Blog#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth2": "^0.2.0"
+  }
 }
