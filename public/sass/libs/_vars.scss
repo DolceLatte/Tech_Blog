@@ -5,62 +5,40 @@
 
 // Duration.
 	$duration: (
-		menu:				0.5s,
-		banner:				1s,
+		nav:				0.5s,
 		transition:			0.2s
 	);
 
 // Size.
 	$size: (
-		border-radius:		4px,
-		element-height:		3.25rem,
-		element-margin:		2rem,
-		container-width:	80rem,
-		header-height:		3.25rem,
-		inner-width:		75rem,
-		menu-width:			20rem
+		border-radius:		0.375em,
+		element-height:		2.75em,
+		element-margin:		2em,
+		sidebar-width:		26em,
+		sidebar-width-alt:	24em,
+		gutter:				3em
 	);
 
 // Font.
 	$font: (
-		family:				('Raleway', Arial, Helvetica, sans-serif),
+		family:				('Open Sans', sans-serif),
+		family-heading:		('Roboto Slab', serif),
 		family-fixed:		('Courier New', monospace),
 		weight:				400,
-		weight-light:		300,
-		weight-xlite:		200,
-		weight-bold:		600
+		weight-bold:		600,
+		weight-heading:		700,
+		weight-heading-alt:	400,
+		kerning-heading:	0.075em
 	);
 
 // Palette.
 	$palette: (
 		bg:					#ffffff,
-		fg:					#444444,
-		fg-bold:			#555555,
-		fg-light:			#bbbbbb,
-		border:				rgba(0,0,0,0.25),
-		border-bg:			rgba(0,0,0,0.075),
-		border-lt:			rgba(0,0,0,0.025),
-		highlight:			accent1,
-
-		accent1: (
-			bg:				#ce1b28,
-			fg:				rgba(255,255,255,0.75),
-			fg-bold:		#ffffff,
-			fg-light:		rgba(255,255,255,0.4),
-			border:			rgba(255,255,255,0.25),
-			border-bg:		rgba(255,255,255,0.075),
-			border-lt:		rgba(255,255,255,0.025),
-			highlight:		accent1
-		),
-
-		accent2: (
-			bg:				#111111,
-			fg:				rgba(255,255,255,0.5),
-			fg-bold:		#ffffff,
-			fg-light:		rgba(255,255,255,0.4),
-			border:			rgba(255,255,255,0.25),
-			border-bg:		rgba(255,255,255,0.075),
-			border-lt:		rgba(255,255,255,0.025),
-			highlight:		accent1
-		)
+		bg-alt:				#f5f6f7,
+		fg:					#7f888f,
+		fg-bold:			#3d4449,
+		fg-light:			#9fa3a6,
+		border:				rgba(210,215,217,0.75),
+		border-bg:			transparentize(#e6ebed, 0.75),
+		accent:				#f56a6a
 	);
