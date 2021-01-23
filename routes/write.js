@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-var mysql      = require('mysql');
+// var mysql      = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '1234',
-  database : 'post'
-});
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : '1234',
+//   database : 'post'
+// });
 
-connection.connect();
+// connection.connect();
 
 router.get('/',function(req,res){
       res.render('write', {
