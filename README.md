@@ -1,5 +1,4 @@
 # Tech_Blog
 
-내가 멀 공부했는지 모르겠으니 기술블로그나 만들자
-
-Node.JS 기반의 웹 블로그
+Node.JS 14.13
+MongoDB
