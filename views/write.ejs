@@ -40,19 +40,19 @@
 									</div>
 								</section> -->
 						<section>
-                  <form action="/write" method="post">
-                      <table border="1">
-                          <tr>
-                              <td>Title</td>
-                              <td><input type="text" name="title" id="title" required/></td>
-                          </tr>
-						  <tr>
-							<td>Image</td>
-							<td><input type="file" name="images" id="images" required/></td>
-						</tr>
-						<tr>
-							<td>Tag</td>
-							<td>
+                  <form action="/write" method="post">                      
+                            <label>Title</label>
+							<div><input type="text" name="title" required/></div>
+							<div class="img-preview">
+								<img id="img-preview" src="" style="display: none;" width="250" alt="미리보기">
+								<input id="img-url" type="hidden" name="url">
+							  </div>
+							  <div>
+								<label id="img-label" for="img">사진 업로드</label>
+								<input id="img" type="file" accept="image/*">
+							  </div>
+							<div>
+							<label>Tag</label>
 								<a href="">#ML</a>
 								<a href="">#Security</a>
 								<a href="">#Cloud</a>
@@ -62,17 +62,14 @@
 								<a href="">#Node.js</a>
 								<a href="">#Network</a>
 								<a href="">#DarkWeb</a>
-							</td>
-						</tr>
-                          <tr>
-                              <td>Contents</td>
-                              <td><textarea name="content" id="content" cols="30" rows="25" required></textarea></td>
-                          </tr>
-                          
-                          <tr>
-                              <td colspan="2">
+							</div>
+							<div>
+                              <label>Contents</label>
+                              <textarea name="content" id="content" cols="30" rows="25" required></textarea>
+							</div>
+                              <div colspan="2">
                                   <button type="submit">POST</button>
-                              </td>
+							  </div>
                           </tr>
                       </table>
                   </form>
@@ -131,6 +128,23 @@
 			<script src="js/breakpoints.min.js"></script>
 			<script src="js/util.js"></script>
 			<script src="js/main.js"></script>
-
+			<!-- <script>
+				if (document.getElementById('img')) {
+				  document.getElementById('img').addEventListener('change', function(e) {
+					const formData = new FormData();
+					console.log(this, this.files);
+					formData.append('img', this.files[0]);
+					axios.post('/write/img', formData)
+					  .then((res) => {
+						document.getElementById('img-url').value = res.data.url;
+						document.getElementById('img-preview').src = res.data.url;
+						document.getElementById('img-preview').style.display = 'inline';
+					  })
+					  .catch((err) => {
+						console.error(err);
+					  });
+				  });
+				}
+			</script> -->
 	</body>
 </html>

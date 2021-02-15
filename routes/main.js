@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const {Post, User} = require('../models')
 
-router.use((req,res,next)=>{  
+router.use((req,res,next)=>{ 
       res.locals.user = null;
       res.locals.followerCount = 0;
       res.locals.followerList = [];
@@ -13,33 +14,30 @@ router.get('/',function(req,res){
       });
  });
 
-router.get('/techReview',function(req,res){
-      res.render('techReview', {
-      });
- });
-
 router.get('/Api',function(req,res){
       res.render('Api', {
       });
  });
 
- router.get('/', async (req, res, next) => {
+ router.get('/techReview', async (req, res, next) => {
       try {
         const posts = await Post.findAll({
           include: {
             model: User,
-            attributes: ['id', 'nick'],
+            attributes: ['id'],
           },
           order: [['createdAt', 'DESC']],
         });
-        res.render('main', {
+
+        res.render('techReview', {
           title: 'NodeBird',
           twits: posts,
         });
+      
       } catch (err) {
         console.error(err);
         next(err);
       }
-    });
+});
 
 module.exports = router;

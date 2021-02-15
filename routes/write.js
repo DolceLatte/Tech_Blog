@@ -42,22 +42,19 @@ storage: multer.diskStorage({
 limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
-console.log(req.file);
-res.json({ url: `/img/${req.file.filename}` });
-});
+// router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
+// console.log(req.file);
+// res.json({ url: `/img/${req.file.filename}` });
+// });
     
 const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
 try {
       const post = await Post.create({
-      title : req.title,
-      content: req.content,
-      img: req.images,
-      UserId: req.user.id,
+      title : req.body.title,
+      content: req.body.content,
+      img: req.body.url,
       });
-
-      console.log(post);
 
       const hashtags = req.body.content.match(/#[^\s#]*/g);
       if (hashtags) {

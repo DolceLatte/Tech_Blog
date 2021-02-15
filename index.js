@@ -26,6 +26,7 @@ const opt = {
 app.set('view engine','ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(bodyParser.urlencoded({extended : true}));
 
 app.use(session({
   secret:'MySecret',
