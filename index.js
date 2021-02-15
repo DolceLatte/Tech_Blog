@@ -41,9 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/',require('./routes/main.js'));
-// app.use('/techReview',require('./routes/techReview.js'));
 app.use('/write',require('./routes/write.js'));
-// app.use('/Api',require('./routes/Api.js'));
 app.use('/auth',require('./routes/auth.js'));
 
 app.use((req,res,next)=>{

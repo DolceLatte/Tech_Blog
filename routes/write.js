@@ -1,38 +1,80 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+var multer = require('multer')
+var path = require('path')
 
-var mysql      = require('mysql');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'jwkim',
-  port     : '3307',
-  password : '1234',
-});
+const {sequelize ,  Post, Hashtag} = require('../models')
 
-connection.connect();
+sequelize.sync({force : false})
+  .then(()=>{
+    console.log('DB connect');;
+  })
+  .catch((err)=>{
+    console.error(err);
+  });
 
 router.get('/',function(req,res){
       res.render('write', {
       user : req.user
       });
-
  });
 
- router.post('/write', function(req,res,next){
-    var name = req.body.name;
-    var title = req.body.title;
-    var content = req.body.content;
-    var passwd = req.body.passwd;
-    var datas = [name,title,content,passwd];
-
-
-    var sql = "insert into board(name, title, content, regdate, modidate, passwd,hit) values(?,?,?,now(),now(),?,0)";
-    conn.query(sql,datas, function (err, rows) {
-        if (err) console.error("err : " + err);
-        res.redirect('/techReview');
-    });
+ try {
+      fs.readdirSync('uploads');
+    } catch (error) {
+      console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+      fs.mkdirSync('uploads');
+      }
+    
+const upload = multer({
+storage: multer.diskStorage({
+      destination(req, file, cb) {
+      cb(null, 'uploads/');
+      },
+      filename(req, file, cb) {
+      const ext = path.extname(file.originalname);
+      cb(null, path.basename(file.originalname, ext) + Date.now() + ext);
+      },
+}),
+limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
+console.log(req.file);
+res.json({ url: `/img/${req.file.filename}` });
+});
+    
+const upload2 = multer();
+router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
+try {
+      const post = await Post.create({
+      title : req.title,
+      content: req.content,
+      img: req.images,
+      UserId: req.user.id,
+      });
+
+      console.log(post);
+
+      const hashtags = req.body.content.match(/#[^\s#]*/g);
+      if (hashtags) {
+      const result = await Promise.all(
+      hashtags.map(tag => {
+            return Hashtag.findOrCreate({
+            where: { title: tag.slice(1).toLowerCase() },
+            })
+      }),
+      );
+      await post.addHashtags(result.map(r => r[0]));
+      }
+      res.redirect('/');
+} catch (error) {
+      console.error(error);
+      next(error);
+}
+});
 
 module.exports = router;
