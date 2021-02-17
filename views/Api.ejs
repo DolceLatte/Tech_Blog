@@ -21,13 +21,16 @@
 						<div class="inner">
 							<!-- Header -->
 								<header id="header">
-									<a href="/" class="logo">Welcome to <strong>Security Tech Jar</strong></a>
+									<% if(user){%>
+										<a href="/" class="logo"> Welcome! <strong><%= user.displayName %></strong></a>
+									<% } else {%>
+										<a href="/" class="logo"> Welcome! <strong>to My API HUB</strong></a>
+									<% } %>
 									<ul class="icons">
 										<!-- <li><a href="#" ><span class="label">Google</span></a></li> -->
 										<% if(!user){%>
 											<a class="icon brands fa-google" href="auth/google"> Login</a>
 										  <% } else {%>
-											<!-- <a > Welcome <%= user.displayName %></a> -->
 											  <a class="icon brands fa-google" href="auth/logout"> Logout</a>
 										  <% } %>
 									</ul>
@@ -82,7 +85,7 @@
 									</header>
 									<ul>
 										<li><a href="/">Homepage</a></li>
-										<li><a href="/techReview">Tech Review</a></li>
+										<!-- <li><a href="/techReview">Tech Review</a></li> -->
 										<li><a href="/Api">API</a></li>
 									</ul>
 								</nav>
@@ -96,7 +99,6 @@
 										<li class="icon solid fa-envelope"><a href="#">bnm961126@gmail.com</a></li>
 										<li class="icon solid fa-phone">(082)010-5216-6056</li>
 										<li class="icon solid fa-home">Yuseong-gu, Daejeon, Republic of Korea</li>
-										<li class="icon solid fa-people-carry">My Follower Number : <%=followerCount%></a></li>
 									</ul>
 								</section>
 

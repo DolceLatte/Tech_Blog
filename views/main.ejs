@@ -6,11 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="css/main.css" />
 
-	<style>
-		#jar {
-			width: 270px;
-			height: 270px;
-		}
 	</style>
 	</head>
 	<body class="is-preload">
@@ -21,7 +16,11 @@
 						<div class="inner">
 							<!-- Header -->
 								<header id="header">
-									<a href="/" class="logo">Welcome to <strong>Security Tech Jar</strong></a>
+									<% if(user){%>
+										<a href="/" class="logo"> Welcome! <strong><%= user.displayName %></strong></a>
+									<% } else {%>
+										<a href="/" class="logo"> Welcome! <strong>to My API HUB</strong></a>
+									<% } %>
 									<ul class="icons">
 										<!-- <li><a href="#" ><span class="label">Google</span></a></li> -->
 										<% if(!user){%>
@@ -36,11 +35,11 @@
 							<!-- Banner -->
 								<section id="banner">
 									<div class="content">
-										<h1>Welcome to Security <br/> Tech Jar</h1>
+										<h1>Welcome to Security <br/> HUB</h1>
 										<header>
-											<p>다양한 보안 기술 및 바이너리 분석도구 개발 일기</p>
+											<p>1. 파일구조 기반의 악성코드 탐지기</p>
+											<p>2. Antlr기반의 pyLint</p>
 										</header>
-										<p>머신러닝 기반 바이너리 코드 분석 및 도구 개발</p>
 										
 										<ul class="actions">
 											<li><a href="#" class="button big">Study With Me!</a></li>
@@ -70,7 +69,6 @@
 									</header>
 									<ul>
 										<li><a href="/">Homepage</a></li>
-										<li><a href="/techReview">Tech Review</a></li>
 										<li><a href="/Api">API</a></li>
 									</ul>
 								</nav>
@@ -84,7 +82,6 @@
 										<li class="icon solid fa-envelope"><a href="#">bnm961126@gmail.com</a></li>
 										<li class="icon solid fa-phone">(082)010-5216-6056</li>
 										<li class="icon solid fa-home">Yuseong-gu, Daejeon, Republic of Korea</li>
-										<li class="icon solid fa-people-carry">My Follower Number : <%=followerCount%></a></li>
 									</ul>
 								</section>
 
